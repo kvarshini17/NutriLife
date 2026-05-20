@@ -103,7 +103,7 @@
     "pname": "Organic Raw Hemp Hearts (1lb)",
     "category": "Seeds",
     "price": 1149,
-    "image": "https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?q=80&w=600",
+    "image": "https://mindbodysoul.us/wp-content/uploads/2020/10/Hemp.jpg",
     "description": "Premium shelled hemp seeds packed with easily-digestible plant protein.",
     "rating": 4.9
   },
@@ -112,7 +112,7 @@
     "pname": "Golden Turmeric Ashwagandha Latte (150g)",
     "category": "Beverages",
     "price": 1349,
-    "image": "https://images.unsplash.com/photo-1616165415772-f6789a79fa7b?q=80&w=600",
+    "image": "https://thumbs.dreamstime.com/b/golden-turmeric-latte-spices-herbs-creamy-art-sits-wooden-spoon-filled-alongside-ashwagandha-roots-422092393.jpg?w=768",
     "description": "Warm organic superfood adaptogen blend.",
     "rating": 4.8
   },
@@ -128,9 +128,9 @@
   {
     "pid": 15,
     "pname": "Pure Low-Glycemic Maple Sap Syrup (12oz)",
-    "category": "Sweeteners",
+    "category": "Supplements",
     "price": 1099,
-    "image": "https://images.unsplash.com/photo-1608039829572-78524f79c4c7?q=80&w=600",
+    "image": "https://3.bp.blogspot.com/-uqIpOHi5_lA/UycyqCziyJI/AAAAAAAAOR4/XkoYP4qFSQM/s1600/IMG_2673.JPG",
     "description": "100% pure organic grade-A maple sap syrup.",
     "rating": 4.6
   },
@@ -139,7 +139,7 @@
     "pname": "Vegan Hydration BCAA Complex (30 Serv)",
     "category": "Supplements",
     "price": 2499,
-    "image": "https://images.unsplash.com/photo-1512438248247-f0f2a5a8b7f0?q=80&w=600",
+    "image": "https://imagedelivery.net/olI9wp0b6luWFB9nPfnqjQ/res/abillionveg/image/upload/azxw5tffywfpvgyfeibk/1643927694.jpg/public",
     "description": "Fermented plant-based branch chain amino acids.",
     "rating": 4.9
   }

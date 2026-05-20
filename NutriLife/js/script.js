@@ -228,11 +228,28 @@ function syncCartBadge() {
 }
 
 // Add item handler
-function triggerAddToCart(productId) {
+function triggerAddToCart(productId, event) {
     try {
         const cart = JSON.parse(localStorage.getItem(getCartKey()) || '{}');
         cart[productId] = (cart[productId] || 0) + 1;
         localStorage.setItem(getCartKey(), JSON.stringify(cart));
+
+        // Visual button feedback
+        if (event && event.currentTarget) {
+            const btn = event.currentTarget;
+            const originalText = btn.innerText;
+            const originalBg = btn.style.backgroundColor || '';
+            
+            btn.innerText = "Added! ✅";
+            btn.style.backgroundColor = "#10b981";
+            btn.style.transform = 'scale(1.05)';
+            
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.style.backgroundColor = originalBg;
+                btn.style.transform = 'scale(1)';
+            }, 1200);
+        }
         
         // Sync with mock session PHP backend
         fetch('php/cart.php?action=add', {
@@ -493,17 +510,20 @@ function renderFilteredCatalog() {
 function getProductCardHtml(product) {
     const wishlist = JSON.parse(localStorage.getItem('nutriWishlist') || '[]');
     const isWished = wishlist.includes(product.pid);
-    const heartColor = isWished ? '#ef4444' : '#94a3b8';
+    const heartFill = isWished ? '#ef4444' : 'none';
+    const heartStroke = isWished ? '#ef4444' : '#94a3b8';
     
     return `
         <div class="glass-card product-card" style="position:relative;">
-            <button onclick="triggerToggleWishlist(${product.pid}, event)" style="position:absolute; top:15px; right:15px; background:white; border:none; border-radius:50%; width:36px; height:36px; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 10px rgba(0,0,0,0.1); cursor:pointer; z-index:10; font-size:1.1rem; color:${heartColor}; transition:transform 0.2s;">
-                ❤️
+            <button onclick="triggerToggleWishlist(${product.pid}, event)" style="position:absolute; top:15px; right:15px; background:white; border:none; border-radius:50%; width:36px; height:36px; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 10px rgba(0,0,0,0.1); cursor:pointer; z-index:10; transition:transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="${heartFill}" stroke="${heartStroke}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                </svg>
             </button>
             <div class="product-img-wrapper">
                 <img src="${product.image}" alt="${product.pname}" referrerPolicy="no-referrer">
                 <div class="product-btn-overlay">
-                    <button class="btn btn-primary" onclick="triggerAddToCart(${product.pid})" style="padding: 6px 14px; font-size: 0.85rem; border-radius: 8px;">Add To Cart</button>
+                    <button class="btn btn-primary" onclick="triggerAddToCart(${product.pid}, event)" style="padding: 6px 14px; font-size: 0.85rem; border-radius: 8px; transition: all 0.3s;">Add To Cart</button>
                 </div>
                 <span class="product-badge">${product.rating} ★</span>
             </div>
@@ -513,7 +533,7 @@ function getProductCardHtml(product) {
                 <p style="font-size: 0.85rem; color: #6b7280; margin-bottom: 12px; line-height:1.4;">${product.description || ""}</p>
                 <div class="product-bottom">
                     <span class="price">₹${parseFloat(product.price).toFixed(2)}</span>
-                    <button class="btn btn-primary" onclick="triggerAddToCart(${product.pid})" style="padding: 8px 16px; border-radius: 12px; font-size: 0.85rem;">Add to Cart</button>
+                    <button class="btn btn-primary" onclick="triggerAddToCart(${product.pid}, event)" style="padding: 8px 16px; border-radius: 12px; font-size: 0.85rem; transition: all 0.3s;">Add to Cart</button>
                 </div>
             </div>
         </div>
@@ -538,23 +558,6 @@ function setupAdminPanelIfActive() {
 
     if (isAdmin) {
         adminPanel.style.display = 'block';
-        
-        // Hide user store sections
-        const mainGrid = document.getElementById('mainProductsGrid');
-        const featuredGrid = document.getElementById('featuredProductsGrid');
-        const catalogControls = document.querySelector('.catalog-controls');
-        const floatCart = document.getElementById('floatingCartBtn');
-        const floatWish = document.getElementById('floatingWishlistBtn');
-        
-        // Let's also hide featured header if it exists
-        const headings = document.querySelectorAll('.section-header');
-
-        if (mainGrid) mainGrid.style.display = 'none';
-        if (featuredGrid) featuredGrid.style.display = 'none';
-        if (catalogControls) catalogControls.style.display = 'none';
-        if (floatCart) floatCart.style.display = 'none';
-        if (floatWish) floatWish.style.display = 'none';
-        headings.forEach(h => { if (!h.closest('#adminPanel')) h.style.display = 'none'; });
 
         renderAdminConsoleLists();
 
@@ -727,14 +730,25 @@ function triggerToggleWishlist(pid, event) {
     event.stopPropagation();
     let wishlist = JSON.parse(localStorage.getItem('nutriWishlist') || '[]');
     const btn = event.currentTarget;
+    const svg = btn.querySelector('svg');
+
+    // Bounce animation
+    btn.style.transform = 'scale(1.3)';
+    setTimeout(() => btn.style.transform = 'scale(1)', 200);
 
     if (wishlist.includes(pid)) {
         wishlist = wishlist.filter(id => id !== pid);
-        btn.style.color = '#94a3b8';
+        if(svg) {
+            svg.setAttribute('fill', 'none');
+            svg.setAttribute('stroke', '#94a3b8');
+        }
         showToast("Removed from wishlist", "");
     } else {
         wishlist.push(pid);
-        btn.style.color = '#ef4444';
+        if(svg) {
+            svg.setAttribute('fill', '#ef4444');
+            svg.setAttribute('stroke', '#ef4444');
+        }
         showToast("Added to wishlist ❤️", "success");
     }
     

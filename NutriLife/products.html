@@ -134,45 +134,50 @@
         }
         .wishlist-sidebar.active { right: 0; }
         
-        /* Checkout Modal */
+        /* Checkout Modal Enhanced */
         .checkout-modal-overlay {
             display: none;
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(15, 23, 42, 0.7);
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(8px);
             z-index: 3000;
             justify-content: center;
             align-items: center;
             animation: fadeInOverlay 0.3s forwards;
         }
         .checkout-modal {
-            background: white;
+            background: #ffffff;
             width: 100%;
-            max-width: 500px;
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
-            transform: scale(0.95);
-            animation: modalPop 0.3s forwards;
+            max-width: 550px;
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+            transform: scale(0.95) translateY(20px);
+            animation: modalPopPremium 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
             max-height: 90vh;
             overflow-y: auto;
+            position: relative;
         }
-        @keyframes modalPop {
-            to { transform: scale(1); }
+        @keyframes modalPopPremium {
+            to { transform: scale(1) translateY(0); }
         }
         .checkout-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #e2e8f0;
-            padding-bottom: 15px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 20px;
         }
-        .checkout-header h2 { font-size: 1.5rem; margin: 0; }
+        .checkout-header h2 { font-size: 1.75rem; margin: 0; font-weight: 800; color: #0f172a; }
         .checkout-close {
-            background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #94a3b8;
+            background: #f1f5f9; border: none; font-size: 1.25rem; cursor: pointer; color: #64748b;
+            width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s;
         }
-        .checkout-close:hover { color: #0f172a; }
+        .checkout-close:hover { background: #e2e8f0; color: #0f172a; transform: rotate(90deg); }
+
         
         /* Toast Notifications */
         .toast-container {
@@ -397,38 +402,38 @@
     <div class="checkout-modal-overlay" id="checkoutModal">
         <div class="checkout-modal">
             <div class="checkout-header">
-                <h2>Secure Checkout</h2>
+                <h2>Secure Checkout 🔒</h2>
                 <button class="checkout-close" id="closeCheckoutBtn">&times;</button>
             </div>
             <div id="checkoutContent">
-                <p style="margin-bottom:20px; color:#64748b; font-size:0.95rem;">Review your items and confirm your mock purchase.</p>
+                <p style="margin-bottom:24px; color:#64748b; font-size:1.05rem; line-height: 1.5;">Review your wellness items and confirm your simulated purchase.</p>
                 
-                <div style="background:#f8fafc; padding:15px; border-radius:10px; margin-bottom:20px; font-weight:600; display:flex; justify-content:space-between;">
-                    <span>Order Total:</span>
-                    <span id="checkoutTotal" style="color:var(--primary-green);">₹0.00</span>
+                <div style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); padding:24px; border-radius:16px; margin-bottom:30px; display:flex; justify-content:space-between; align-items:center; border: 1px solid #bbf7d0; box-shadow: 0 10px 20px rgba(34, 197, 94, 0.05);">
+                    <span style="font-size: 1.1rem; color: #166534; font-weight: 600;">Total Investment:</span>
+                    <span id="checkoutTotal" style="color:var(--primary-green); font-size: 1.8rem; font-weight: 800; letter-spacing: -0.5px;">₹0.00</span>
                 </div>
 
                 <form id="checkoutForm">
-                    <div class="form-group" style="margin-bottom: 15px;">
-                        <label style="display:block; margin-bottom:5px; font-size:0.9rem; font-weight:600;">Delivery Address</label>
-                        <input type="text" id="checkoutAddress" required placeholder="123 Wellness Ave, City" style="width:100%; padding:12px; border-radius:8px; border:1px solid #cbd5e1;">
+                    <div class="form-group" style="margin-bottom: 20px;">
+                        <label style="display:block; margin-bottom:8px; font-size:0.95rem; font-weight:600; color: #334155;">Delivery Address</label>
+                        <input type="text" id="checkoutAddress" required placeholder="123 Wellness Ave, Healthy City" style="width:100%; padding:14px; border-radius:12px; border:2px solid #e2e8f0; font-size: 1rem; transition: border-color 0.2s; outline: none;" onfocus="this.style.borderColor='#10b981'" onblur="this.style.borderColor='#e2e8f0'">
                     </div>
-                    <div class="form-group" style="margin-bottom: 25px;">
-                        <label style="display:block; margin-bottom:5px; font-size:0.9rem; font-weight:600;">Payment Method</label>
-                        <select style="width:100%; padding:12px; border-radius:8px; border:1px solid #cbd5e1;">
-                            <option>Credit/Debit Card (Mock)</option>
-                            <option>UPI / NetBanking</option>
-                            <option>Cash on Delivery</option>
+                    <div class="form-group" style="margin-bottom: 35px;">
+                        <label style="display:block; margin-bottom:8px; font-size:0.95rem; font-weight:600; color: #334155;">Payment Method</label>
+                        <select style="width:100%; padding:14px; border-radius:12px; border:2px solid #e2e8f0; font-size: 1rem; appearance: none; background: url('data:image/svg+xml;utf8,<svg fill=%22black%22 height=%2224%22 viewBox=%220 0 24 24%22 width=%2224%22 xmlns=%22http://www.w3.org/2000/svg%22><path d=%22M7 10l5 5 5-5z%22/></svg>') no-repeat right 12px center; background-color: white; transition: border-color 0.2s; outline: none;" onfocus="this.style.borderColor='#10b981'" onblur="this.style.borderColor='#e2e8f0'">
+                            <option>💳 Credit/Debit Card (Mock)</option>
+                            <option>📱 UPI / NetBanking</option>
+                            <option>💵 Cash on Delivery</option>
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; padding:15px; font-size:1.05rem; border-radius:10px;">Place Order Now</button>
+                    <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; padding:18px; font-size:1.15rem; border-radius:12px; font-weight: 700; box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4); transition: transform 0.2s, box-shadow 0.2s;">Confirm Order</button>
                 </form>
             </div>
-            <div id="checkoutSuccess" style="display:none; text-align:center; padding: 20px 0;">
-                <div style="font-size:4rem; color:var(--primary-green); margin-bottom:10px;">✅</div>
-                <h3 style="margin-bottom:10px;">Order Placed Successfully!</h3>
-                <p style="color:#64748b; margin-bottom:20px;">Thank you for shopping at NutriLife. Your simulated order is being processed.</p>
-                <button class="btn btn-secondary" id="checkoutDoneBtn" style="width:100%; justify-content:center;">Continue Shopping</button>
+            <div id="checkoutSuccess" style="display:none; text-align:center; padding: 30px 10px;">
+                <div style="font-size:5rem; margin-bottom:20px; animation: modalPopPremium 0.5s;">🎉</div>
+                <h3 style="margin-bottom:15px; font-size: 1.8rem; color: #0f172a;">Order Placed Successfully!</h3>
+                <p style="color:#64748b; margin-bottom:30px; font-size: 1.05rem; line-height: 1.6;">Thank you for prioritizing your health with NutriLife. Your simulated wellness package is being prepared.</p>
+                <button class="btn btn-secondary" id="checkoutDoneBtn" style="width:100%; justify-content:center; padding: 16px; font-size: 1.1rem; border-radius: 12px; font-weight: 600;">Back to Storefront</button>
             </div>
         </div>
     </div>

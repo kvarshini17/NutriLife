@@ -11,5 +11,18 @@
     "diet": "Balanced",
     "height": 175,
     "weight": 70
+  },
+  {
+    "id": 2,
+    "name": "Anna",
+    "email": "anniejane@gmail.com",
+    "password": "Anna123@",
+    "role": "user",
+    "phone": "",
+    "address": "",
+    "goal": "Maintain Health",
+    "diet": "Balanced",
+    "height": 175,
+    "weight": 70
   }
 ]

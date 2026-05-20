@@ -99,8 +99,20 @@ initDatabases();
 
 
 
-// In-memory active session stores
-const sessionMockStore = {};
+const SESSIONS_FILE = path.join(DB_DIR, 'sessions.json');
+let sessionMockStore = {};
+
+function initSessions() {
+    if (fs.existsSync(SESSIONS_FILE)) {
+        try {
+            sessionMockStore = JSON.parse(fs.readFileSync(SESSIONS_FILE, 'utf-8'));
+        } catch(e) { console.error("Error reading sessions.json", e); }
+    }
+}
+function saveSessions() {
+    fs.writeFileSync(SESSIONS_FILE, JSON.stringify(sessionMockStore, null, 2));
+}
+initSessions();
 
 // Helper to extract session cookies
 function getActiveSession(req) {
@@ -146,7 +158,12 @@ const productsRoute = (req, res) => {
 
         if (action === 'add' || action === 'edit' || action === 'delete') {
             const sessionUser = getActiveSession(req);
-            if (!sessionUser || sessionUser.role !== 'admin') {
+            if (!sessionUser) {
+                console.log(`[productsRoute] Rejected ${action} - no sessionUser. Cookies:`, req.headers.cookie, 'SessionStore keys:', Object.keys(sessionMockStore));
+                return res.status(403).json({ success: false, message: 'Forbidden. Admin access required to modify catalog.' });
+            }
+            if (sessionUser.role !== 'admin') {
+                console.log(`[productsRoute] Rejected ${action} - user is not admin. Role:`, sessionUser.role);
                 return res.status(403).json({ success: false, message: 'Forbidden. Admin access required to modify catalog.' });
             }
         }
@@ -371,6 +388,7 @@ const loginRoute = (req, res) => {
             user_email: user.email,
             role: user.role
         };
+        saveSessions();
 
         res.setHeader('Set-Cookie', `nutriSessionId=${sessionId}; Path=/; HttpOnly; SameSite=Strict`);
         return res.json({
@@ -379,7 +397,8 @@ const loginRoute = (req, res) => {
             user: {
                 id: user.id,
                 name: user.name,
-                email: user.email
+                email: user.email,
+                role: user.role
             }
         });
     }
@@ -404,6 +423,7 @@ const servletRoute = (req, res) => {
             user_email: user.email,
             role: user.role
         };
+        saveSessions();
 
         res.setHeader('Set-Cookie', `nutriSessionId=${sessionId}; Path=/; HttpOnly; SameSite=Strict`);
         return res.redirect('/jsp/dashboard.jsp');
@@ -1116,6 +1136,15 @@ const jspDashboardRoute = (req, res) => {
 
     <!-- Interactive JS scripts -->
     <script>
+        // CRITICAL FIX: Ensure frontend localStorage is synchronized with backend session
+        // so that the Admin Panel in products.html?admin=true correctly detects the admin role.
+        localStorage.setItem('nutriUser', JSON.stringify({
+            id: ${sessionUser.user_id},
+            name: "${sessionUser.user_name}",
+            email: "${sessionUser.user_email}",
+            role: "${sessionUser.role}"
+        }));
+
         document.addEventListener('DOMContentLoaded', () => {
             // Tab system handling
             const tabs = document.querySelectorAll('.dash-tab');

@@ -1,0 +1,20 @@
+{
+  "sid_q05hcbe0lzn": {
+    "user_id": 1,
+    "user_name": "Varshini",
+    "user_email": "varshini@gmail.com",
+    "role": "admin"
+  },
+  "sid_3rrm2zl32xb": {
+    "user_id": 1,
+    "user_name": "Varshini",
+    "user_email": "varshini@gmail.com",
+    "role": "admin"
+  },
+  "sid_rhikm7bsfwd": {
+    "user_id": 2,
+    "user_name": "Anna",
+    "user_email": "anniejane@gmail.com",
+    "role": "user"
+  }
+}
