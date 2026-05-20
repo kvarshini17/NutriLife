@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutriLife | Interactive BMI Dial Index Calculator</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .stage-box {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 12px;
+            font-weight: 700;
+            color: white;
+            margin-top: 12px;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            box-shadow: var(--shadow-sm);
+        }
+        .bmi-indicator-bar {
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(to right, #3b82f6 0%, #10b981 30%, #f97316 65%, #ef4444 100%);
+            border-radius: 4px;
+            position: relative;
+            margin: 30px 0 10px;
+        }
+        .bmi-indicator-pin {
+            position: absolute;
+            top: -6px;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border: 4px solid var(--primary-dark);
+            border-radius: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            transition: left 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .bmi-ranges-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: #6b7280;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Responsive Sticky Navbar -->
+    <nav class="sticky-nav">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-leaf">🌱</span> NutriLife
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Store</a></li>
+                <li><a href="bmi.html" class="active">BMI Tool</a></li>
+                <li id="dashLink" style="display: none;"><a href="jsp/dashboard.jsp">My Dashboard</a></li>
+                <li id="authLink"><a href="login.html" class="nav-btn">Sign In</a></li>
+            </ul>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content Calculator -->
+    <main class="container" style="margin-top: 60px;">
+        <h1 style="text-align: center; margin-bottom: 8px;">Interactive Body Mass <span class="highlight">Index Dial Tool</span></h1>
+        <p class="section-subtitle" style="margin-bottom: 40px;">Input your height and weight metrics to calculate your BMI category and metabolic requirements instantly.</p>
+
+        <section class="calculator-wrap">
+            
+            <!-- Metric Input Card -->
+            <div class="glass-card bmi-calc-card">
+                <h2 style="text-align: left; margin-bottom: 24px; font-size: 1.5rem;">📏 Input Your Metrics</h2>
+                
+                <form id="bmiForm" onsubmit="return false;">
+                    <div class="form-group">
+                        <label for="heightUnit">Preferred Height Measure</label>
+                        <select id="heightUnit" onchange="toggleBmiUnits()">
+                            <option value="metric">Centimeters (cm)</option>
+                            <option value="imperial">Inches (in)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bmiHeight" id="heightLabel">Height (in cm) *</label>
+                        <input type="number" id="bmiHeight" required min="50" max="300" placeholder="e.g. 175">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="weightUnit">Preferred Weight Measure</label>
+                        <select id="weightUnit" onchange="toggleBmiUnits()">
+                            <option value="metric">Kilograms (kg)</option>
+                            <option value="imperial">Pounds (lbs)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bmiWeight" id="weightLabel">Weight (in kg) *</label>
+                        <input type="number" id="bmiWeight" required min="10" max="500" placeholder="e.g. 70">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; margin-top: 10px;">Calculate Body Mass Index</button>
+                    <button type="reset" class="btn btn-secondary" style="width: 100%; justify-content: center; margin-top: 12px; color: black; border-color: #ccd;" onclick="resetBmiTool()">Reset Metrics</button>
+                </form>
+            </div>
+
+            <!-- Dial and Gauge results card -->
+            <div class="glass-card bmi-result-card" id="bmiOutputCard">
+                <h2 style="font-size: 1.5rem; margin-bottom: 16px;">⏱️ Your Metabolic Reading</h2>
+                
+                <div class="bmi-dial-container">
+                    <div class="bmi-radar" id="bmiDialRadar">
+                        <!-- Score text display -->
+                        <div class="bmi-score-text">
+                            <span class="bmi-val" id="bmiValue">--.-</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bmi-stage-display">
+                    <p style="font-weight: 500;">Calculated Classification Zone:</p>
+                    <span class="stage-box" id="bmiStageText" style="background-color: #9ca3af;">Awaiting Metrics</span>
+                </div>
+
+                <!-- Custom visual ranges -->
+                <div style="width: 100%; max-width: 380px;">
+                    <div class="bmi-indicator-bar">
+                        <div class="bmi-indicator-pin" id="bmiPin"></div>
+                    </div>
+                    <div class="bmi-ranges-labels">
+                        <span>Under &lt; 18.5</span>
+                        <span>Normal 18.5-24.9</span>
+                        <span>Over 25-29.9</span>
+                        <span>Obese &gt; 30</span>
+                    </div>
+                </div>
+
+                <!-- Guidance suggestion -->
+                <p id="bmiAdvice" style="margin-top: 24px; font-size: 0.925rem; max-width: 360px; color: #4b5563;">
+                    Specify height and weight to retrieve specialized clinical lifestyle diet, protein, and hydration advice.
+                </p>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- Footer with contact and social links -->
+    <footer>
+        <div class="footer-container container">
+            <div class="footer-brand">
+                <h3>🌱 NutriLife Store</h3>
+                <p>Establishing natural life harmony, dense metabolic clean ingredients, organic diet formulation tools, and e-commerce since 2026.</p>
+                <div class="socials">
+                    <a href="#" class="social-circle">F</a>
+                    <a href="#" class="social-circle">Y</a>
+                    <a href="#" class="social-circle">I</a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Sitemap Links</h4>
+                <ul>
+                    <li><a href="index.html">Home Landing</a></li>
+                    <li><a href="products.html">Organic Store</a></li>
+                    <li><a href="bmi.html">BMI Dial Tool</a></li>
+                    <li><a href="jsp/dashboard.jsp">User Dashboard</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Contact Details</h4>
+                <p style="color:#94a3b8; font-size:0.9rem; margin-bottom:10px;">HQ Terminal Office:</p>
+                <p style="color:white; font-size:0.95rem; font-weight:600;">832 Organic Wellness Blvd, San Francisco, CA</p>
+                <p style="color:#cbd5e1; font-size:0.9rem; margin-top:10px;">support@nutri-life-well.org</p>
+                <p style="color:#cbd5e1; font-size:0.9rem; margin-top:4px;">1-800-NUTRI-LIFE</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 NutriLife Health Solutions. Hand-built with pure CSS and Vanilla JavaScript simulation mechanics.</p>
+        </div>
+    </footer>
+
+    <!-- Core scripting links -->
+    <script src="js/script.js?v=1.0.4"></script>
+    <script>
+        // Set metrics inputs dynamic trigger inside form
+        document.getElementById('bmiForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            calculateBmiOnScreen();
+        });
+
+        function toggleBmiUnits() {
+            const hUnit = document.getElementById('heightUnit').value;
+            const wUnit = document.getElementById('weightUnit').value;
+
+            const hInput = document.getElementById('bmiHeight');
+            const wInput = document.getElementById('bmiWeight');
+
+            if (hUnit === 'metric') {
+                document.getElementById('heightLabel').innerText = "Height (in cm) *";
+                hInput.placeholder = "e.g. 175";
+                hInput.min = "50";
+                hInput.max = "300";
+            } else {
+                document.getElementById('heightLabel').innerText = "Height (in inches) *";
+                hInput.placeholder = "e.g. 69";
+                hInput.min = "20";
+                hInput.max = "120";
+            }
+
+            if (wUnit === 'metric') {
+                document.getElementById('weightLabel').innerText = "Weight (in kg) *";
+                wInput.placeholder = "e.g. 70";
+                wInput.min = "10";
+                wInput.max = "500";
+            } else {
+                document.getElementById('weightLabel').innerText = "Weight (in pounds) *";
+                wInput.placeholder = "e.g. 154";
+                wInput.min = "20";
+                wInput.max = "1000";
+            }
+        }
+
+        function calculateBmiOnScreen() {
+            const hUnit = document.getElementById('heightUnit').value;
+            const wUnit = document.getElementById('weightUnit').value;
+
+            let h = parseFloat(document.getElementById('bmiHeight').value);
+            let w = parseFloat(document.getElementById('bmiWeight').value);
+
+            if (isNaN(h) || isNaN(w) || h <= 0 || w <= 0) return;
+
+            // Convert to metric if user selected imperial
+            if (hUnit === 'imperial') {
+                h = h * 2.54; // inch to cm
+            }
+            if (wUnit === 'imperial') {
+                w = w * 0.453592; // lbs to kg
+            }
+
+            // Metric BMI = kg / (m)^2
+            const heightInMeters = h / 100;
+            const bmi = w / (heightInMeters * heightInMeters);
+
+            const bmiValEl = document.getElementById('bmiValue');
+            const stageTextEl = document.getElementById('bmiStageText');
+            const bmiAdvisor = document.getElementById('bmiAdvice');
+            const bmiPin = document.getElementById('bmiPin');
+            const bmiRadar = document.getElementById('bmiDialRadar');
+
+            // Render numeric value with standard fraction format
+            bmiValEl.innerText = bmi.toFixed(1);
+
+            // Calculate percentage position of progress indicator (range: 12 to 38)
+            let percentage = ((bmi - 12) / (38 - 12)) * 100;
+            if (percentage < 2) percentage = 2;
+            if (percentage > 98) percentage = 98;
+            bmiPin.style.left = `${percentage}%`;
+
+            let stage = "";
+            let color = "";
+            let msg = "";
+
+            if (bmi < 18.5) {
+                stage = "Underweight";
+                color = "#3b82f6"; // Blue
+                msg = "Advice: Focus on increasing daily healthy caloric intakes with nutrition seed fats, whole grains, and protein isolate builders.";
+            } else if (bmi >= 18.5 && bmi < 24.9) {
+                stage = "Normal";
+                color = "#10b981"; // Vibrant Green
+                msg = "Advice: Phenomenal! You are in the optimal biological zone. Retain hydration levels, clean matcha beverages, and active daily meal guides.";
+            } else if (bmi >= 25.0 && bmi < 29.9) {
+                stage = "Overweight";
+                color = "#f97316"; // Bright Orange
+                msg = "Advice: Balanced diet caloric deficit will assist. Optimize high-fiber prebiotic seeds, leafy greens, and engage in daily physical activities.";
+            } else {
+                stage = "Obese";
+                color = "#ef4444"; // Vivid Red
+                msg = "Advice: Strongly recommend choosing the 'Weight Loss Plan' from our central XML Guide. Increase cardio workouts, and consult nutrition specialists.";
+            }
+
+            stageTextEl.innerText = stage;
+            stageTextEl.style.backgroundColor = color;
+            bmiAdvisor.innerText = msg;
+
+            // Animate Radar Circle colors
+            bmiRadar.style.borderTopColor = color;
+            bmiRadar.style.animation = 'none';
+        }
+
+        function resetBmiTool() {
+            document.getElementById('bmiValue').innerText = "--.-";
+            const scale = document.getElementById('bmiStageText');
+            scale.innerText = "Awaiting Metrics";
+            scale.style.backgroundColor = "#9ca3af";
+            document.getElementById('bmiPin').style.left = "50%";
+            document.getElementById('bmiAdvice').innerText = "Specify height and weight to retrieve specialized clinical lifestyle diet, protein, and hydration advice.";
+            const radar = document.getElementById('bmiDialRadar');
+            radar.style.borderTopColor = 'var(--primary-green)';
+            radar.style.animation = 'rotateUnfocused 5s linear infinite';
+        }
+    </script>
+</body>
+</html>

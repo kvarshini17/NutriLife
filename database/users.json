@@ -1,0 +1,15 @@
+[
+  {
+    "id": 1,
+    "name": "Varshini",
+    "email": "varshini@gmail.com",
+    "password": "Varsha123@",
+    "role": "admin",
+    "phone": "+1 (123) 456-7890",
+    "address": "505 Green Garden Boulevard, Suite 101",
+    "goal": "Maintain Health",
+    "diet": "Balanced",
+    "height": 175,
+    "weight": 70
+  }
+]

@@ -1,0 +1,146 @@
+[
+  {
+    "pid": 1,
+    "pname": "Organic Chia Seeds (1lb)",
+    "category": "Seeds",
+    "price": 999,
+    "image": "https://seedsforsprouting.com/wp-content/uploads/chia-sfs.jpg",
+    "description": "Rich in powerful antioxidants, minerals, omega-3, and dietary fiber.",
+    "rating": 4.8
+  },
+  {
+    "pid": 2,
+    "pname": "Premium Whey Protein Isolate (2.2lb)",
+    "category": "Supplements",
+    "price": 3999,
+    "image": "https://www.stack3d.com/wp-content/uploads/2026/01/nutriymmy-premium-whey-protein.jpg",
+    "description": "Ultra-pure grass-fed athletic whey isolate.",
+    "rating": 4.9
+  },
+  {
+    "pid": 3,
+    "pname": "Japanese Matcha Green Tea Powder (100g)",
+    "category": "Beverages",
+    "price": 1499,
+    "image": "https://images.unsplash.com/photo-1536256263959-770b48d82b0a?q=80&w=600",
+    "description": "Organic stone-ground ceremonial green tea matcha from Uji, Japan.",
+    "rating": 4.7
+  },
+  {
+    "pid": 4,
+    "pname": "Raw Unfiltered Forest Honey (16oz)",
+    "category": "Sweeteners",
+    "price": 1199,
+    "image": "https://images.unsplash.com/photo-1587049352846-4a222e784d38?q=80&w=600",
+    "description": "Harvested directly from forest wild-hive reserves.",
+    "rating": 4.8
+  },
+  {
+    "pid": 5,
+    "pname": "Organic Tricolor Quinoa Seeds (32oz)",
+    "category": "Grains",
+    "price": 799,
+    "image": "https://down-ph.img.susercontent.com/file/ph-11134208-81ztj-mh0bofsjeakqe9",
+    "description": "Gluten-free, prebiotic tricolor grain blend.",
+    "rating": 4.6
+  },
+  {
+    "pid": 6,
+    "pname": "Vegan Whole-Food Multivitamins (90 Caps)",
+    "category": "Supplements",
+    "price": 1999,
+    "image": "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?q=80&w=600",
+    "description": "All-natural vegan mineral and multi-vitamin complex.",
+    "rating": 4.5
+  },
+  {
+    "pid": 7,
+    "pname": "Royal Premium Superfood Seeds Mix",
+    "category": "Seeds",
+    "price": 1249,
+    "image": "https://img.freepik.com/premium-photo/diverse-selection-superfoods-seeds_268722-8839.jpg",
+    "description": "Premium variety pack loaded with dense antioxidants.",
+    "rating": 4.9
+  },
+  {
+    "pid": 8,
+    "pname": "Metabolic Coffee Beans (12oz)",
+    "category": "Beverages",
+    "price": 1099,
+    "image": "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?q=80&w=600",
+    "description": "Organic shade-grown single-origin medium roast.",
+    "rating": 4.8
+  },
+  {
+    "pid": 9,
+    "pname": "Organic Moringa Leaf Powder (150g)",
+    "category": "Supplements",
+    "price": 899,
+    "image": "https://www.ahealthyleaf.com/wp-content/uploads/2015/11/2015-11-20-at-12-56-50-e1448239629352.jpg",
+    "description": "Pure organic miracle tree powder.",
+    "rating": 4.7
+  },
+  {
+    "pid": 10,
+    "pname": "Prebiotic Sprouted Black Beans (32oz)",
+    "category": "Grains",
+    "price": 649,
+    "image": "https://www.gosupps.com/media/catalog/product/7/1/7101hePcJQL.jpg",
+    "description": "Fiber-rich, low-glycemic prebiotic sprouted black beans.",
+    "rating": 4.6
+  },
+  {
+    "pid": 11,
+    "pname": "Dehydrated Organic Avocado Slices (4oz)",
+    "category": "Seeds",
+    "price": 749,
+    "image": "https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?q=80&w=600",
+    "description": "Perfect healthy fat keto-snack item.",
+    "rating": 4.7
+  },
+  {
+    "pid": 12,
+    "pname": "Organic Raw Hemp Hearts (1lb)",
+    "category": "Seeds",
+    "price": 1149,
+    "image": "https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?q=80&w=600",
+    "description": "Premium shelled hemp seeds packed with easily-digestible plant protein.",
+    "rating": 4.9
+  },
+  {
+    "pid": 13,
+    "pname": "Golden Turmeric Ashwagandha Latte (150g)",
+    "category": "Beverages",
+    "price": 1349,
+    "image": "https://images.unsplash.com/photo-1616165415772-f6789a79fa7b?q=80&w=600",
+    "description": "Warm organic superfood adaptogen blend.",
+    "rating": 4.8
+  },
+  {
+    "pid": 14,
+    "pname": "Spelt & Ancient Amaranth Grain (32oz)",
+    "category": "Grains",
+    "price": 849,
+    "image": "https://images.unsplash.com/photo-1574316071802-0d684efa7bf5?q=80&w=600",
+    "description": "A blend of mineral-dense nutrient-rich ancient grains.",
+    "rating": 4.7
+  },
+  {
+    "pid": 15,
+    "pname": "Pure Low-Glycemic Maple Sap Syrup (12oz)",
+    "category": "Sweeteners",
+    "price": 1099,
+    "image": "https://images.unsplash.com/photo-1608039829572-78524f79c4c7?q=80&w=600",
+    "description": "100% pure organic grade-A maple sap syrup.",
+    "rating": 4.6
+  },
+  {
+    "pid": 16,
+    "pname": "Vegan Hydration BCAA Complex (30 Serv)",
+    "category": "Supplements",
+    "price": 2499,
+    "image": "https://images.unsplash.com/photo-1512438248247-f0f2a5a8b7f0?q=80&w=600",
+    "description": "Fermented plant-based branch chain amino acids.",
+    "rating": 4.9
+  }
+]

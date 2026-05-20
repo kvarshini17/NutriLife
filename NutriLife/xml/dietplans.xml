@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dietplans>
+    <plan id="1">
+        <name>Weight Loss Plan</name>
+        <calories>1500</calories>
+        <duration>30 Days</duration>
+        <image>https://images.unsplash.com/photo-1540420773420-3366772f4999?q=80&amp;w=600</image>
+        <meals>
+            <meal>Breakfast: Berries &amp; Oatmeal</meal>
+            <meal>Lunch: Spinach Chicken Salad</meal>
+            <meal>Snack: High Protein Greek Yogurt</meal>
+            <meal>Dinner: Lemon Baked Salmon &amp; Veggies</meal>
+        </meals>
+        <description>Designed for active fat loss focusing on nutrient-dense calorie-deficit meals.</description>
+    </plan>
+    <plan id="2">
+        <name>lean Muscle Gain</name>
+        <calories>2800</calories>
+        <duration>45 Days</duration>
+        <image>https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&amp;w=600</image>
+        <meals>
+            <meal>Breakfast: Avocado Toast &amp; Four Eggs</meal>
+            <meal>Lunch: Grilled Turkey &amp; Tricolor Quinoa</meal>
+            <meal>Snack: Nut Butter Berry Shake</meal>
+            <meal>Dinner: Grass-Fed Flank Steak &amp; Sweet Potato</meal>
+        </meals>
+        <description>Prioritizes high protein, complex carbohydrates, and essential healthy fats to build clean muscle mass.</description>
+    </plan>
+    <plan id="3">
+        <name>Balanced Wellness Plan</name>
+        <calories>2000</calories>
+        <duration>14 Days</duration>
+        <image>https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&amp;w=600</image>
+        <meals>
+            <meal>Breakfast: Mango Chia Pudding</meal>
+            <meal>Lunch: Hummus Buddha Bowl with Brown Rice</meal>
+            <meal>Snack: Raw Sprouted Pumpkin Seeds</meal>
+            <meal>Dinner: Wholesome Lentil Vegetable Consommé</meal>
+        </meals>
+        <description>A harmonized lifestyle program providing balanced macros to boost general metabolic health.</description>
+    </plan>
+</dietplans>

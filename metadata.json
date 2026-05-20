@@ -1,0 +1,6 @@
+{
+  "name": "NutriLife",
+  "description": "Complete responsive nutrition guide and healthy products e-commerce store with glassmorphic cards, BMI calculator, XML diet plans, and simulated full-stack flows.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

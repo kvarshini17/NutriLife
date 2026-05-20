@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutriLife | Premium Healthy Products & Nutrition Guide</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Responsive Sticky Navbar -->
+    <nav class="sticky-nav">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-leaf">🌱</span> NutriLife
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="products.html">Store</a></li>
+                <li><a href="bmi.html">BMI Tool</a></li>
+                <li id="dashLink" style="display: none;"><a href="jsp/dashboard.jsp">My Dashboard</a></li>
+                <li id="authLink"><a href="login.html" class="nav-btn">Sign In</a></li>
+            </ul>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Automatic Sliding Banner -->
+    <section class="hero-slider-container">
+        <div class="hero-slider" id="heroSlider">
+            <!-- Slide 1 -->
+            <div class="slide active">
+                <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=1200" alt="Fresh Healthy Salad Bowls" class="slide-img" referrerPolicy="no-referrer">
+                <div class="slide-content">
+                    <h1>Nourish Your Body With <span class="highlight">Whole Foods</span></h1>
+                    <p>Elevate your health journey with certified local organics, whole-grain prebiotics, and fresh minerals sourced sustainably.</p>
+                    <div class="hero-actions">
+                        <a href="products.html" class="btn btn-primary">Browse Store</a>
+                        <a href="#dietSection" class="btn btn-secondary">Nutrition Guide</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Slide 2 -->
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=1200" alt="Active Strength Exercising" class="slide-img" referrerPolicy="no-referrer">
+                <div class="slide-content">
+                    <h1>Power Your Daily <span class="highlight">Athletic Journey</span></h1>
+                    <p>Fuel clean muscular recovery, retain strength goals, and boost stamina with ultra-pure grass-fed athletic isolates.</p>
+                    <div class="hero-actions">
+                        <a href="products.html" class="btn btn-primary">Protein &amp; Isolates</a>
+                        <a href="bmi.html" class="btn btn-secondary">Calculate BMI</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Slide 3 -->
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?q=80&w=1200" alt="Vibrant Fresh Citrus Infusion" class="slide-img" referrerPolicy="no-referrer">
+                <div class="slide-content">
+                    <h1>Pure Stoneground <span class="highlight">Antioxidants</span></h1>
+                    <p>Balance hydration, metabolic alert states, and oxidative protection with authentic ceremonial Grade Matcha teas.</p>
+                    <div class="hero-actions">
+                        <a href="products.html" class="btn btn-primary">Vitamins &amp; Teas</a>
+                        <a href="#tips" class="btn btn-secondary">Read Daily Tips</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Highlights Category Section -->
+    <section class="categories-section container">
+        <h2>Shop By <span class="highlight">Wellness Categories</span></h2>
+        <p class="section-subtitle">Specially curated selections focusing on clean ingredients, dense nutrients, and pure taste.</p>
+        
+        <div class="category-grid">
+            <div class="glass-card category-card" onclick="location.href='products.html?category=Seeds'">
+                <div class="category-img-container">
+                    <img src="https://img.freepik.com/premium-photo/diverse-selection-superfoods-seeds_268722-8839.jpg" alt="Superfood Seeds" referrerPolicy="no-referrer">
+                </div>
+                <h3>Superfood Seeds</h3>
+            </div>
+            <div class="glass-card category-card" onclick="location.href='products.html?category=Supplements'">
+                <div class="category-img-container">
+                    <img src="https://images.unsplash.com/photo-1584017911766-d451b3d0e843?q=80&w=600" alt="Certified Supplements" referrerPolicy="no-referrer">
+                </div>
+                <h3>Supplements &amp; Minerals</h3>
+            </div>
+            <div class="glass-card category-card" onclick="location.href='products.html?category=Beverages'">
+                <div class="category-img-container">
+                    <img src="https://images.unsplash.com/photo-1536256263959-770b48d82b0a?q=80&w=600" alt="Ceremonial Beverages" referrerPolicy="no-referrer">
+                </div>
+                <h3>Ceremonial Beverages</h3>
+            </div>
+            <div class="glass-card category-card" onclick="location.href='products.html?category=Grains'">
+                <div class="category-img-container">
+                    <img src="https://down-ph.img.susercontent.com/file/ph-11134208-81ztj-mh0bofsjeakqe9" alt="Organic Whole Grains" referrerPolicy="no-referrer">
+                </div>
+                <h3>Whole Grains</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products section -->
+    <section class="featured-section container">
+        <h2>Featured <span class="highlight">Healthy Products</span></h2>
+        <p class="section-subtitle">Certified organic essentials selected to provide maximal nutritional support to your daily regimen.</p>
+        
+        <div class="product-grid" id="featuredProductsGrid">
+            <!-- Dynamically populated from simulated products.php -->
+        </div>
+        
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="products.html" class="btn btn-primary">View Entire Catalog</a>
+        </div>
+    </section>
+
+    <!-- Nutrition Guide section (XML Parsing) -->
+    <section class="diet-plans-section container" id="dietSection">
+        <h2>Sustenance &amp; <span class="highlight">Dietary Guides</span></h2>
+        <p class="section-subtitle">Real healthy lifestyle dietary structures parsed dynamically from our central XML registry database.</p>
+        
+        <div class="diet-plans-grid" id="dietPlansGrid">
+            <!-- Dynamically populated from XML parsing -->
+        </div>
+    </section>
+
+    <!-- Health Tips section -->
+    <section class="featured-section container" id="tips">
+        <h2>Daily Smart <span class="highlight">Health Hacks</span></h2>
+        <p class="section-subtitle">Simple, scientifically-proven suggestions to elevate metabolic levels and organic rest.</p>
+        
+        <div class="category-grid">
+            <div class="glass-card">
+                <h3>💧 Hydration Velocity</h3>
+                <p style="margin-top: 10px; font-size: 0.95rem;">Drinking 500ml of room-temperature clean water first thing in the morning raises core metabolic throughput by nearly 24% for the active hour.</p>
+            </div>
+            <div class="glass-card">
+                <h3>🥑 Healthy Lipids</h3>
+                <p style="margin-top: 10px; font-size: 0.95rem;">Unsaturated plant-based fats like avocado lipids and raw sprouted almonds optimize brain endocrine releases and improve concentration focus.</p>
+            </div>
+            <div class="glass-card">
+                <h3>😴 Consistent Sleep Cycles</h3>
+                <p style="margin-top: 10px; font-size: 0.95rem;">Establishing sleeping blocks between 10PM and 6AM accelerates cellular regeneration, liver biological cleanup, and optimizes lean fat-loss.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Automatic Sliding Testimonials Section -->
+    <section class="testimonials-section">
+        <h2>Validated By <span class="highlight">Our Community</span></h2>
+        <p class="section-subtitle">Real stories of active people achieving metabolic success and clean nutritional balance.</p>
+        
+        <div class="testimonial-slider">
+            <div class="testimonial-wrap" id="testimonialWrap">
+                <div class="testimonial-slide">
+                    <p class="quote-text">"Using NutriLife seeds and matcha daily completely shifted my afternoon fog! My digestion is lightweight, and I've dropped 6lbs in a month cleanly."</p>
+                    <p class="reviewer-name">Jessica Sterling</p>
+                    <p class="reviewer-title">Certified Studio Yoga Instructor</p>
+                </div>
+                <div class="testimonial-slide">
+                    <p class="quote-text">"The whey isolate recovery is the cleanest I have used in 10 years of powerlifting. Absolutely no synthetic bloating, and the honey tastes phenomenal!"</p>
+                    <p class="reviewer-name">Marcus Vance</p>
+                    <p class="reviewer-title">Amateur Strength &amp; Conditioning Coach</p>
+                </div>
+                <div class="testimonial-slide">
+                    <p class="quote-text">"The diet plans parsed from their XML guide helped my whole family structure delicious meals. Highly recommend the budget-friendly Chia recipes."</p>
+                    <p class="reviewer-name">Eleanor Patel</p>
+                    <p class="reviewer-title">Mother of Three &amp; Health Enthusiast</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Healthy Eating Blog Section -->
+    <section class="blog-section container">
+        <h2>NutriLife <span class="highlight">Wisdom Blog</span></h2>
+        <p class="section-subtitle">Latest lifestyle insights, athletic meal-prepping, and nutrition formulas of verified medical value.</p>
+        
+        <div class="blog-grid">
+            <!-- Blog Card 1 -->
+            <div class="glass-card blog-card" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+                <div style="cursor: pointer;" onclick="openBlogDetail(1)">
+                    <img src="https://images.unsplash.com/photo-1543339308-43e59d6b73a6?q=80&w=600" alt="Prepping healthy bowls" class="blog-img" referrerPolicy="no-referrer">
+                    <div style="padding: 20px 0 0 0;">
+                        <p class="blog-meta">Nutrition • May 18, 2026</p>
+                        <h3>The Complete Guide To Macro Meal Prepping</h3>
+                        <p style="margin-top:8px; font-size:0.9rem; margin-bottom: 12px;">Structure highly efficient weekly proteins, fiber densities, and complex grains without losing organic freshness.</p>
+                    </div>
+                </div>
+                <div style="border-top: 1px dashed rgba(34, 197, 94, 0.2); padding-top: 12px; margin-top: auto;">
+                    <a href="https://www.macronutrientcalculator.org/blog/meal-prep-for-macros/" target="_blank" rel="noopener noreferrer" class="blog-link-btn" style="font-weight: 700; color: #16a34a; text-decoration: none; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 4px;">Read Full Insights &rarr;</a>
+                </div>
+            </div>
+            <!-- Blog Card 2 -->
+            <div class="glass-card blog-card" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+                <div style="cursor: pointer;" onclick="openBlogDetail(2)">
+                    <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=600" alt="Fresh green produce" class="blog-img" referrerPolicy="no-referrer">
+                    <div style="padding: 20px 0 0 0;">
+                        <p class="blog-meta">Detox • May 12, 2026</p>
+                        <h3>5 Superfoods To Boost Your Natural Metabolism</h3>
+                        <p style="margin-top:8px; font-size:0.9rem; margin-bottom: 12px;">Integrate ceremonial green tea, raw hive honey, and organic seed prebiotics to accelerate calorie processing.</p>
+                    </div>
+                </div>
+                <div style="border-top: 1px dashed rgba(34, 197, 94, 0.2); padding-top: 12px; margin-top: auto;">
+                    <a href="https://mrnutritionists.com/best-superfoods-for-metabolism/" target="_blank" rel="noopener noreferrer" class="blog-link-btn" style="font-weight: 700; color: #16a34a; text-decoration: none; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 4px;">Read Full Insights &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Sliding Sidebar Drawer -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Cart Shopping Drawer</h3>
+            <button class="close-cart" id="closeCartBtn">&times;</button>
+        </div>
+        <div class="cart-body" id="cartItemsContainer">
+            <!-- Dynamically populated from JavaScript script -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total Bill:</span>
+                <span id="cartTotalPrice">₹0.00</span>
+            </div>
+            <button class="btn btn-primary" style="width: 100%; justify-content: center;" onclick="alert('Order processed simulated successfully via MySQL connectivity!')">Secure Checkout</button>
+        </div>
+    </div>
+
+    <!-- Footer with contact and social links -->
+    <footer>
+        <div class="footer-container container">
+            <div class="footer-brand">
+                <h3>🌱 NutriLife Store</h3>
+                <p>Establishing natural life harmony, dense metabolic clean ingredients, organic diet formulation tools, and e-commerce since 2026.</p>
+                <div class="socials">
+                    <a href="#" class="social-circle">F</a>
+                    <a href="#" class="social-circle">Y</a>
+                    <a href="#" class="social-circle">I</a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Sitemap Links</h4>
+                <ul>
+                    <li><a href="index.html">Home Landing</a></li>
+                    <li><a href="products.html">Organic Store</a></li>
+                    <li><a href="bmi.html">BMI Dial Tool</a></li>
+                    <li><a href="jsp/dashboard.jsp">User Dashboard</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Contact Details</h4>
+                <p style="color:#94a3b8; font-size:0.9rem; margin-bottom:10px;">HQ Terminal Office:</p>
+                <p style="color:white; font-size:0.95rem; font-weight:600;">832 Organic Wellness Blvd, San Francisco, CA</p>
+                <p style="color:#cbd5e1; font-size:0.9rem; margin-top:10px;">support@nutri-life-well.org</p>
+                <p style="color:#cbd5e1; font-size:0.9rem; margin-top:4px;">1-800-NUTRI-LIFE</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 NutriLife Health Solutions. Hand-built with pure CSS and Vanilla JavaScript simulation mechanics.</p>
+        </div>
+    </footer>
+
+    <!-- Blog Modal Styles and Layout Dynamic Overlay -->
+    <style>
+        .blog-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(6, 78, 59, 0.45);
+            backdrop-filter: blur(8px);
+            z-index: 3500;
+            justify-content: center;
+            align-items: center;
+            animation: fadeInOverlay 0.25s forwards;
+        }
+        @keyframes fadeInOverlay {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .blog-modal-card {
+            max-width: 650px;
+            width: 90%;
+            padding: 40px;
+            position: relative;
+            border-radius: 28px;
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 25px 50px rgba(6, 78, 59, 0.2);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            transform: scale(0.95);
+            transition: transform 0.25s ease;
+        }
+        .blog-modal-overlay.active .blog-modal-card {
+            transform: scale(1);
+        }
+        .blog-link-btn:hover {
+            text-decoration: underline !important;
+            color: #047857 !important;
+        }
+    </style>
+
+    <div class="blog-modal-overlay" id="blogOverlay">
+        <div class="blog-modal-card">
+            <button onclick="closeBlogDetail()" style="position: absolute; top: 20px; right: 24px; background: none; border: none; font-size: 1.8rem; cursor: pointer; color: #6b7280; transition: color 0.2s;" onmouseover="this.style.color='#ef4444'" onmouseout="this.style.color='#6b7280'">&times;</button>
+            <span id="blogModalMeta" style="font-size: 0.75rem; font-weight: 700; color: #16a34a; text-transform: uppercase; letter-spacing: 0.08em; display: inline-block; margin-bottom: 8px;">CATEGORY • DATE</span>
+            <h2 id="blogModalTitle" style="font-size: 1.8rem; font-weight: 700; color: #064e3b; margin-top: 4px; margin-bottom: 16px; line-height: 1.25;">Blog Title</h2>
+            <div id="blogModalContent" style="font-size: 0.95rem; color: #334155; line-height: 1.7; overflow-y: auto; max-height: 350px; padding-right: 8px; margin-bottom: 24px;">
+                Blog Content...
+            </div>
+            <div style="text-align: right; display: flex; justify-content: flex-end; gap: 12px; align-items: center; flex-wrap: wrap;">
+                <a id="blogModalExternalLink" href="#" target="_blank" rel="noopener noreferrer" class="blog-link-btn" style="font-weight: 700; color: #16a34a; text-decoration: none; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 4px; padding: 10px 20px; border-radius: 9999px; border: 1px solid rgba(22, 163, 74, 0.3); background: rgba(22, 163, 74, 0.05); transition: background 0.2s;">Read Full Insights &rarr;</a>
+                <button class="btn btn-primary" onclick="closeBlogDetail()" style="padding: 10px 24px; font-size: 0.9rem; border-radius: 9999px;">Close Insights</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const blogArticles = {
+            1: {
+                meta: "Nutrition • May 18, 2026",
+                title: "The Complete Guide To Macro Meal Prepping",
+                url: "https://www.macronutrientcalculator.org/blog/meal-prep-for-macros/",
+                content: `<p>Proper macro meal prepping is the foundational cornerstone of sustainable health and wellness. Hitting your exact macronutrient goals—protein, carbohydrates, and fats—becomes an effortless exercise when you adopt a structured preparation system.</p>
+                          
+                          <h4 style="margin-top:16px; margin-bottom:8px; color:#064e3b; font-weight:700;">The Twin-Session Weekly Schedule</h4>
+                          <p style="margin-bottom:12px;">Don't make the mistake of prepping 7 days of food at once—ingredients lose their crispness and nutrients degrade. Live by the double session split:</p>
+                          <ul style="margin-left:20px; list-style-type:disc; display:flex; flex-direction:column; gap:4px; margin-bottom:12px;">
+                              <li><strong>Sunday Prep Session (2–3 Hours):</strong> Bake or grill your main bulk proteins, boil hardier whole grains (like organic quinoa or wild brown rice), and roast dense starch-based carbohydrates.</li>
+                              <li><strong>Wednesday Refresh Session (30–45 Min):</strong> Replenish fresh green garden fibers, slice high-water-content vegetables, and organize light salads.</li>
+                          </ul>
+
+                          <h4 style="margin-top:16px; margin-bottom:8px; color:#064e3b; font-weight:700;">The Advanced 4-3-3 Kitchen Batching Formula</h4>
+                          <p style="margin-bottom:12px;">Component-based cooking prevents dietary fatigue. To maintain high food excitement, batch cook a variety of nutrients:</p>
+                          <ul style="margin-left:20px; list-style-type:disc; display:flex; flex-direction:column; gap:4px; margin-bottom:12px;">
+                              <li><strong>4 Proteins:</strong> Mix options like grass-fed isolates, baked lean turkey breasts, sautéed sprouted tofu, or organic boiled eggs.</li>
+                              <li><strong>3 Complex Carbs:</strong> Roasted sweet yams, cooked tricolor seed quinoa, and steel-cut sprouted oat grains.</li>
+                              <li><strong>3 Prebiotic Veggies:</strong> Lightly steamed fresh broccoli crowns, asparagus spears, and sweet bell pepper slices.</li>
+                          </ul>
+
+                          <h4 style="margin-top:16px; margin-bottom:8px; color:#064e3b; font-weight:700;">Storage Safety & the 'Plate Formula'</h4>
+                          <p>Avoid toxic plastic wear entirely. Invest in borosilicate lead-free glass cookware holding airtight silicone lids to maintain raw flavor notes and pristine food safety. Always refrigerate prepped items below 40°F (4°C) immediately to bypass the critical danger zone of bacterial multiplication. Assemble your balanced meals using a 40% clean carbs, 30% lean protein, and 30% healthy structural fiber plate formula for optimal energy throughput!</p>`
+            },
+            2: {
+                meta: "Detox • May 12, 2026",
+                title: "5 Superfoods To Boost Your Natural Metabolism",
+                url: "https://mrnutritionists.com/best-superfoods-for-metabolism/",
+                content: `<p>To elevate physical energy and accelerate cellular fat processing naturally, integrating highly thermogenic superfoods into your everyday diet is exceptionally effective. These compounds raise your Basal Metabolic Rate by inducing heat production during digestion.</p>
+
+                          <h4 style="margin-top:16px; margin-bottom: 8px; color:#064e3b; font-weight:700;">The 5 Proven Metabolism-Boosting Superfoods:</h4>
+                          
+                          <ol style="margin-left:20px; list-style-type:decimal; display:flex; flex-direction:column; gap:12px;">
+                              <li>
+                                  <strong>Avocados (The Magnesium Powerhouse):</strong> 
+                                  Avocados are rich in healthy monounsaturated fatty lipids and highly energetic magnesium. Magnesium is a vital metabolic catalyst used in over 300 enzymatic responses inside the human body, especially carbohydrate processing and ATP cellular energy generation.
+                              </li>
+                              <li>
+                                  <strong>Eggs (The Complete Protein Package):</strong> 
+                                  Because of their dense, highly bioavailable amino acid profiles, eggs trigger a high Thermic Effect of Food (TEF). Your digestive system burns significantly more energy processing complete dietary proteins compared to fats or raw sugars.
+                              </li>
+                              <li>
+                                  <strong>Beans &amp; Legumes (Fiber-Rich Fuel):</strong> 
+                                  Packed with active resistant starches and soluble dietary fibers, legumes nourish healthy gut microbiome cultures. This mitigates fast insulin spikes, maintains lean insulin sensitivity, and increases resting energy expenditure.
+                              </li>
+                              <li>
+                                  <strong>Organic Coffee (The Morning Kickstarter):</strong> 
+                                  The concentrated caffeine molecules found in coffee promote lipolysis, a biochemical pathway that stimulates the body to mobilize stored fatty acids into the bloodstream to be actively burned for daily heat and dynamic energy.
+                              </li>
+                              <li>
+                                  <strong>Moringa (The Miracle Thyroid Shield):</strong> 
+                                  An incredible leafy superfood packed with rich isothiocyanates, vitamin antioxidants, and trace minerals. Moringa balances thyroid endocrine output—the master gland directly commanding all basal metabolic rates and muscle health.
+                              </li>
+                          </ol>`
+            }
+        };
+
+        function openBlogDetail(id) {
+            const article = blogArticles[id];
+            if (!article) return;
+            
+            document.getElementById('blogModalMeta').innerHTML = article.meta;
+            document.getElementById('blogModalTitle').innerHTML = article.title;
+            document.getElementById('blogModalContent').innerHTML = article.content;
+            
+            const extLink = document.getElementById('blogModalExternalLink');
+            if (extLink) {
+                extLink.href = article.url || "#";
+            }
+            
+            const overlay = document.getElementById('blogOverlay');
+            overlay.style.display = 'flex';
+            setTimeout(() => {
+                overlay.classList.add('active');
+            }, 50);
+        }
+
+        function closeBlogDetail() {
+            const overlay = document.getElementById('blogOverlay');
+            overlay.classList.remove('active');
+            setTimeout(() => {
+                overlay.style.display = 'none';
+            }, 300);
+        }
+
+        // Close on clicking overlay background
+        document.getElementById('blogOverlay').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('blogOverlay')) {
+                closeBlogDetail();
+            }
+        });
+    </script>
+
+    <!-- Core scripting links -->
+    <script src="js/script.js?v=1.0.4"></script>
+</body>
+</html>
