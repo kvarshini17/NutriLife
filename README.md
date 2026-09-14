@@ -1,9 +1,5 @@
-Here is the breakdown of the NutriLife project formatted perfectly for your resume builder:
-
-**Project Name**
 NutriLife – Premium Organic Store & Wellness Dashboard
 
-**What it does**
 A full-stack e-commerce platform and wellness management system designed for organic health products. It provides users with a dynamic storefront for shopping, alongside a personalized health dashboard that features real-time wellness metrics like a live BMI calculator.
 
 **Features**
