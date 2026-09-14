@@ -4,7 +4,8 @@ import fs from 'fs';
 import fileUpload from 'express-fileupload';
 
 const app = express();
-const PORT = 3000;
+const DEFAULT_PORT = Number(process.env.PORT) || 3000;
+let PORT = DEFAULT_PORT;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -1367,6 +1368,23 @@ app.use('/', express.static(path.join(process.cwd(), 'NutriLife')));
 app.use('/NutriLife', express.static(path.join(process.cwd(), 'NutriLife')));
 
 // Start Express listening thread
-app.listen(PORT, '0.0.0.0', () => {
-    console.log(`[SYS-INFO] NutriLife full-stack mock server running on http://0.0.0.0:${PORT}`);
-});
+const startServer = () => {
+    const server = app.listen(PORT, '0.0.0.0', () => {
+        console.log(`[SYS-INFO] NutriLife full-stack mock server running on http://0.0.0.0:${PORT}`);
+    });
+
+    server.on('error', (error) => {
+        if (error.code === 'EADDRINUSE') {
+            const nextPort = PORT + 1;
+            console.warn(`[SYS-INFO] Port ${PORT} is busy; retrying on ${nextPort}`);
+            PORT = nextPort;
+            startServer();
+            return;
+        }
+
+        console.error('[SYS-INFO] Server failed to start:', error);
+        process.exit(1);
+    });
+};
+
+startServer();
