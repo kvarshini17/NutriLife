@@ -1,20 +1,30 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+Here is the breakdown of the NutriLife project formatted perfectly for your resume builder:
 
-# Run and deploy your AI Studio app
+**Project Name**
+NutriLife – Premium Organic Store & Wellness Dashboard
 
-This contains everything you need to run your app locally.
+**What it does**
+A full-stack e-commerce platform and wellness management system designed for organic health products. It provides users with a dynamic storefront for shopping, alongside a personalized health dashboard that features real-time wellness metrics like a live BMI calculator.
 
-View your app in AI Studio: https://ai.studio/apps/30b065d8-462f-4759-9a2a-a19ce2af793f
+**Features**
+*   **Dynamic E-commerce Storefront:** Fully functional product catalog with category filtering, a shopping cart, and a wish list system featuring interactive micro-animations and state feedback.
+*   **Personalized Wellness Dashboard:** A user portal containing a live-calculating BMI gauge, profile management, and order history tracking.
+*   **Role-Based Access Control (RBAC):** Secure authentication system that separates standard users from Admins. 
+*   **Admin Inventory Panel:** A protected backend interface allowing administrators to dynamically add, edit, and delete products from the storefront in real-time.
+*   **Persistent Data Storage:** Implemented a robust Node.js backend using JSON-based persistent mock databases to track users, sessions, orders, and product inventory securely across server restarts.
 
-## Run Locally
+**Your role/contribution**
+*Full Stack Developer*
+*   Architected the frontend using Vanilla JavaScript and modern CSS techniques (glassmorphism, micro-animations) to create a highly premium, responsive UI.
+*   Engineered the backend using Node.js and Express.js to handle API routing, session management, and simulated database operations.
+*   Resolved complex state synchronization issues between the backend session tokens and the frontend `localStorage` to ensure secure Admin rendering.
+*   Designed and implemented the secure checkout modal and dynamic shopping cart logic.
 
-**Prerequisites:**  Node.js
+**Tech stack**
+*   **Frontend:** HTML5, CSS3, Vanilla JavaScript (ES6+).
+*   **Backend:** Node.js, Express.js.
+*   **Data & Auth:** JSON Persistent Storage (Simulated Database), Cookie-based Session Management, `localStorage`.
 
-
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+**Any achievements/impact**
+*   Built a completely custom, dependency-free frontend UI without relying on heavy frameworks like React or Tailwind, demonstrating deep mastery of raw web technologies.
+*   Successfully simulated a full JDBC/Servlet architecture environment using a lightweight Node.js runtime container.
